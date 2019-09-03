@@ -2,7 +2,7 @@ package com.cristian.shouldset.manager
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
 
@@ -87,13 +87,8 @@ object ShouldManager {
      *
      */
     fun putBoolean(key: String, value: Boolean) {
-        if (mBooleanPreferenceList[key] == null) {
-            mBooleanPreferenceList[key] = BehaviorSubject.create<Boolean>()
-            val subscription = mBooleanPreferenceList[key]?.subscribe {
-                mSharedPreferenceManager.edit().putBoolean(key, value).apply()
-            }
-            compositeDisposable.add(subscription)
-        }
+        mBooleanPreferenceList[key] = mBooleanPreferenceList[key] ?: BehaviorSubject.create()
+        mSharedPreferenceManager.edit().putBoolean(key, value).apply()
 
         mBooleanPreferenceList[key]?.onNext(value)
     }
@@ -102,13 +97,8 @@ object ShouldManager {
      *
      */
     fun putString(key: String, value: String) {
-        if (mStringPreferenceList[key] == null) {
-            mStringPreferenceList[key] = BehaviorSubject.create<String>()
-            val subscription = mStringPreferenceList[key]?.subscribe {
-                mSharedPreferenceManager.edit().putString(key, value).apply()
-            }
-            compositeDisposable.add(subscription)
-        }
+        mStringPreferenceList[key] = mStringPreferenceList[key] ?: BehaviorSubject.create()
+        mSharedPreferenceManager.edit().putString(key, value).apply()
 
         mStringPreferenceList[key]?.onNext(value)
     }
@@ -117,13 +107,8 @@ object ShouldManager {
      *
      */
     fun putInt(key: String, value: Int) {
-        if (mIntPreferenceList[key] == null) {
-            mIntPreferenceList[key] = BehaviorSubject.create<Int>()
-            val subscription = mIntPreferenceList[key]?.subscribe {
-                mSharedPreferenceManager.edit().putInt(key, value).apply()
-            }
-            compositeDisposable.add(subscription)
-        }
+        mIntPreferenceList[key] = mIntPreferenceList[key] ?: BehaviorSubject.create()
+        mSharedPreferenceManager.edit().putInt(key, value).apply()
 
         mIntPreferenceList[key]?.onNext(value)
     }
@@ -132,13 +117,8 @@ object ShouldManager {
      *
      */
     fun putFloat(key: String, value: Float) {
-        if (mFloatPreferenceList[key] == null) {
-            mFloatPreferenceList[key] = BehaviorSubject.create<Float>()
-            val subscription = mFloatPreferenceList[key]?.subscribe {
-                mSharedPreferenceManager.edit().putFloat(key, value).apply()
-            }
-            compositeDisposable.add(subscription)
-        }
+        mFloatPreferenceList[key] = mFloatPreferenceList[key] ?: BehaviorSubject.create()
+        mSharedPreferenceManager.edit().putFloat(key, value).apply()
 
         mFloatPreferenceList[key]?.onNext(value)
     }
@@ -147,13 +127,8 @@ object ShouldManager {
      *
      */
     fun putLong(key: String, value: Long) {
-        if (mLongPreferenceList[key] == null) {
-            mLongPreferenceList[key] = BehaviorSubject.create<Long>()
-            val subscription = mFloatPreferenceList[key]?.subscribe {
-                mSharedPreferenceManager.edit().putLong(key, value).apply()
-            }
-            compositeDisposable.add(subscription)
-        }
+        mLongPreferenceList[key] = mLongPreferenceList[key] ?: BehaviorSubject.create()
+        mSharedPreferenceManager.edit().putLong(key, value).apply()
 
         mLongPreferenceList[key]?.onNext(value)
     }
