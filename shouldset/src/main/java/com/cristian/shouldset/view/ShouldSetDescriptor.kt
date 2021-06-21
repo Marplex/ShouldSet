@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.cristian.shouldset.R
 
 class ShouldSetDescriptor : LinearLayout {
@@ -28,10 +29,7 @@ class ShouldSetDescriptor : LinearLayout {
         set(value) {
             field = value
             if (value != null) mShouldSetDescriptorContentTextView.setTextColor(
-                resources.getColor(
-                    value,
-                    context.theme
-                )
+                ContextCompat.getColor(context, value)
             )
         }
 

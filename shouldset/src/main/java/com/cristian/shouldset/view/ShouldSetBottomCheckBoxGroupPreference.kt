@@ -1,6 +1,8 @@
 package com.cristian.shouldset.view
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -17,6 +19,15 @@ class ShouldSetBottomCheckBoxGroupPreference : LinearLayout {
             if (value != null) {
                 this.background = resources.getDrawable(value, context.theme)
             }
+        }
+
+    var disabled: Boolean = false
+        set(value) {
+            val color = if(value) Color.parseColor("#4DFFFFFF") else Color.TRANSPARENT
+            foreground = ColorDrawable(color)
+            isClickable = value
+
+            field = value
         }
 
     var title: String? = null

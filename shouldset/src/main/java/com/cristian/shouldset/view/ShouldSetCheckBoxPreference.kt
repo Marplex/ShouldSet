@@ -71,7 +71,7 @@ class ShouldSetCheckBoxPreference : LinearLayout, ShouldSetPreference {
             mCheckBoxPreference.isChecked = !mCheckBoxPreference.isChecked
         }
 
-        mCheckBoxPreference.setOnCheckedChangeListener { buttonView, isChecked ->
+        mCheckBoxPreference.setOnCheckedChangeListener { _, isChecked ->
             onValueChangedListener?.invoke(isChecked)
             shouldPreferenceManager.putBoolean(key, mCheckBoxPreference.isChecked)
         }

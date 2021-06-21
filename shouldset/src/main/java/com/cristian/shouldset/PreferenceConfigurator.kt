@@ -26,6 +26,13 @@ class PreferenceConfigurator(val context: Context) {
         return descriptor
     }
 
+    fun clickable(action: (ShouldSetClickable.() -> Unit)): ShouldSetClickable {
+        val clickable = ShouldSetClickable(context)
+        clickable.action()
+        shouldSetScreen?.addItem(clickable)
+        return clickable
+    }
+
     fun checkBoxPreference(key: String, action: (ShouldSetCheckBoxPreference.() -> Unit)): ShouldSetCheckBoxPreference {
         val checkbox = ShouldSetCheckBoxPreference(key, context)
         checkbox.action()
